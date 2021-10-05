@@ -1,3 +1,5 @@
+import numpy as np
+
 def inputMatrix(N):
     matrix, row = [], []
 
@@ -14,8 +16,15 @@ def matrixTranspose(N, M, matrix):
     for l in matrix:
         print(l)
 
+def matrixTranspose_np(matrix):
+    matrix = np.transpose(matrix)
+
+    for l in matrix:
+        print(l)
+
 
 if __name__ == "__main__":
     N, M = tuple(map(int, input().split()))
     matrix = inputMatrix(N)
-    matrixTranspose(N, M, matrix)
+    # matrixTranspose(N, M, matrix)
+    matrixTranspose_np(matrix)
