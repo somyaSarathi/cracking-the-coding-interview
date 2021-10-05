@@ -14,6 +14,13 @@ def isUniq(s):
     return True
 
 
+def isUniq_set(s):
+    setS = {x for x in s}
+    if len(setS) == len(s):
+        return True
+    return False
+
+
 if __name__ == '__main__':
     s = input()
     
