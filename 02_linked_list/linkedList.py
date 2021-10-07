@@ -12,9 +12,6 @@ class LinkedList:
 
     def __init__(self, head=None):
         self.head = head
-        
-        if head is not None:
-            self.tail = self.head
 
 
     def __str__(self):
