@@ -8,13 +8,10 @@ class LinkedList:
         mutable sequence\n
         if no value given creates an new empty Linked List
     """
-    lenght = 0
+    length = 0
 
     def __init__(self, head=None):
         self.head = head
-        
-        if head is not None:
-            self.tail = self.head
 
 
     def __str__(self):
@@ -36,7 +33,7 @@ class LinkedList:
         """
             Returns the length of the Linked List
         """
-        return self.lenght
+        return self.length
 
 
     def unShift(self, data):
@@ -46,7 +43,7 @@ class LinkedList:
         """
         newNode = Node(data, self.head)
         self.head = newNode
-        self.lenght += 1
+        self.length += 1
 
 
     def shift(self):
@@ -75,7 +72,7 @@ class LinkedList:
             itr = itr.next
 
         itr.next = Node(data)
-        self.lenght += 1
+        self.length += 1
 
 
     def pop(self):
@@ -95,7 +92,7 @@ class LinkedList:
 
         data = itr.next.data
         itr.next = None
-        self.lenght -= 1
+        self.length -= 1
 
         return data
 
