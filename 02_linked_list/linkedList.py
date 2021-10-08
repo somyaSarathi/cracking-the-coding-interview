@@ -91,3 +91,6 @@ class LinkedList:
         self.length -= 1
 
         return
+
+    def len(self):
+        return self.length
