@@ -94,4 +94,4 @@ class singlly:
         self.string = self.string[len(str(data)) + 3 : ]
         self.length -= 1
 
-        return
+        return data
