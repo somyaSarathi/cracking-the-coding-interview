@@ -1,3 +1,6 @@
+from typing import Sequence
+
+
 class Node:
     def __init__(self, data=None, prv=None, nxt=None):
         self.data = data
