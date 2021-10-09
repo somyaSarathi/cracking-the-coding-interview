@@ -3,7 +3,7 @@ from singlly import *
 def returnK(ll, k):
     itr = ll.head
 
-    for i in range(ll.len() - k):
+    for i in range(len(ll) - k):
         itr = itr.next
 
     return itr.data
