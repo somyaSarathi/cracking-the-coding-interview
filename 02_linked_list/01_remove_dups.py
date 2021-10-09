@@ -1,7 +1,7 @@
-from linkedList import *
+from singlly import *
 
 def removeDups(ll):
-    newll = LinkedList()
+    newll = singlly()
     words = {}
     itr = ll.head
 
@@ -21,7 +21,7 @@ def removeDups(ll):
 
 if __name__ == '__main__':
 
-    ll = LinkedList()
+    ll = singlly()
     x = map(int, input().split())
 
     for i in x:

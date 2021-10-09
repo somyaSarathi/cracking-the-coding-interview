@@ -1,4 +1,4 @@
-from linkedList import *
+from singlly import *
 
 def returnK(ll, k):
     itr = ll.head
@@ -10,7 +10,7 @@ def returnK(ll, k):
 
 
 if __name__ == '__main__':
-    ll = LinkedList()
+    ll = singlly()
     k = int(input())
     inpt = map(int, input().split())
 
