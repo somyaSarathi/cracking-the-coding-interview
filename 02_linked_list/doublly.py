@@ -1,3 +1,7 @@
+# https://diveintopython3.net/special-method-names.html
+# https://towardsdatascience.com/how-to-loop-through-your-own-objects-in-python-1609c81e11ff
+# update prv
+
 class Node:
     def __init__(self, data=None, prv=None, nxt=None):
         self.data = data
@@ -18,14 +22,23 @@ class doublly:
 
         if self.head != None:
             self.tail = self.head
-            self.string += '→ ' + str(head)
             self.sequence.append(head)
             self.length += 1
 
         return
 
 
-    def __str__(self):
+    def __str__(self) -> str:
+        for x in self.sequence:
+            self.string += f'→ {x} '
+
+        return self.string
+
+
+    def __repr__(self) -> str:
+        for x in self.sequence:
+            self.string += f'→ {x} '
+
         return self.string
 
 
@@ -46,9 +59,16 @@ class doublly:
         newlist.tail = ll.tail
 
         newlist.length += ll.length
-        newlist.string += ' ' + ll.string
 
         return newlist
+
+
+    def __iter__(self):
+        pass
+
+
+    def __next__(self):
+        pass
 
 
     def __eq__(self, ll: object) -> bool:
@@ -99,18 +119,22 @@ class doublly:
         return False
 
 
+    def __bool__(self) -> bool:
+        if self.head == None:
+            return False
+
+        return True
+
+
     def push(self, data) -> None:
         if self.head == None:
             self.head = Node(data)
             self.tail = self.head
-            self.string += '→ ' + str(data)
             self.sequence.append(data)
             return
 
         self.tail.next = Node(data, self.tail)
         self.tail = self.tail.next
-
-        self.string += ' → ' + str(data)
         self.sequence.append(data)
 
         return
@@ -123,8 +147,6 @@ class doublly:
         data = self.tail.data
         self.tail = self.tail.prv
         self.tail.next = None
-
-        self.string = self.string[0 : -len(str(data)) - 3]
         self.sequence.pop()
 
         return data
@@ -137,8 +159,6 @@ class doublly:
         data = self.head.data
         self.head = self.head.nxt
         self.head.prv = None
-
-        self.string = self.string[len(str(data)) + 3 : ]
         self.sequence = self.sequence[1:]
 
         return data
@@ -148,13 +168,10 @@ class doublly:
         if self.head == None:
             self.head = Node(data)
             self.tail = self.head
-            self.string += '→ ' + str(data)
             return
 
         newHead = Node(data, None, self.head)
         self.head = newHead
-
-        self.string = f'→ {str(data)} {self.string}'
         self.sequence.insert(0, data)
 
         return
