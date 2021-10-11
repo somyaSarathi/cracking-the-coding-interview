@@ -1,11 +1,11 @@
 from singlly import *
 
-def removeDups(ll):
+def removeDups(ll:singlly) -> singlly:
     newll = singlly()
     words = {}
     itr = ll.head
 
-    while itr.next != None:
+    while itr != None:
         try:
             if words[itr.data] == 1:
                 pass
