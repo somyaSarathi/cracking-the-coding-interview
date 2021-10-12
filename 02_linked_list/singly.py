@@ -58,7 +58,7 @@ class Singly:
         if data == None:
             return
 
-        if type(data) == list or type(data) == tuple:
+        if type(data) == list or type(data) == tuple or type(data) == map:
             for x in data:
                 self.push(x)
 
@@ -77,6 +77,10 @@ class Singly:
 
     def __repr__(self) -> str:
         return f"'{self.__str__()}'"
+
+
+    def __len__(self) -> int:
+        return self.length
 
     
     def __eq__(self, o: object) -> bool:
