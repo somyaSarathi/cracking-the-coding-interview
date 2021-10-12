@@ -18,8 +18,8 @@ def removeKthtoLast(k: int, ll):
 
 
 if __name__ == '__main__':
-    l = list(map(int, input().split()))
     k = int(input())
+    l = map(int, input().split())
     ll = Singly(l)
 
     print(removeKthtoLast(k, ll))
