@@ -118,7 +118,16 @@ class Singly:
         return False
 
 
-    def push(self, data):
+    def push(self, data) -> None:
+        if data == None:
+            raise TypeError('expected a non None object')
+            
+        if type(data) == list or type(data) == tuple or type(data) == map:
+            for x in data:
+                self.push(x)
+
+            return
+
         if self.head == None:
             self.head = Node(data)
             self.tail = self.head
@@ -153,6 +162,15 @@ class Singly:
 
 
     def unshift(self, data) -> None:
+        if data == None:
+            raise TypeError('expected a non None object')
+
+        if self.head == None:
+            self.head = Node(data)
+            self.tail = self.head
+            self.length += 1
+            self.llist.append(data)
+
         node = Node(data, self.head)
         self.head = node
         self.llist.insert(0, data)
