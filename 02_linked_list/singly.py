@@ -250,6 +250,7 @@ class Singly:
 
         data = itr.nxt.data
         itr.nxt = itr.nxt.nxt
+        del self.llist[index]
         self.length -= 1
 
         return data
