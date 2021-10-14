@@ -72,7 +72,14 @@ class Singly:
 
 
     def __str__(self) -> str:
-        return '→ ' + ' → '.join(map(str, self.llist))
+        string = '→ '
+        itr = self.head
+
+        while itr != None:
+            string += str(itr.data) + ' → '
+            itr = itr.nxt
+
+        return string
 
 
     def __repr__(self) -> str:
@@ -91,28 +98,28 @@ class Singly:
 
 
     def __gt__(self, o: object) -> bool:
-        if self.llist > o.llist:
+        if self.length > o.length:
             return True
 
         return False
 
     
     def __ge__(self, o: object) -> bool:
-        if self.llist >= o.llist:
+        if self.length >= o.length:
             return True
 
         return False
 
 
     def __lt__(self, o: object) -> bool:
-        if self.llist < o.llist:
+        if self.length < o.length:
             return True
 
         return False
 
 
     def __le__(self, o: object) -> bool:
-        if self.llist <= o.llist:
+        if self.length <= o.length:
             return True
 
         return False
@@ -187,3 +194,54 @@ class Singly:
         self.length -= 1
 
         return data
+
+
+    def insert(self, index: int, data):
+        if data == None or index == None:
+            raise TypeError('expected a none None object')
+
+        if index >= self.length:
+            raise IndexError('linked list index out of range')
+        
+        itr = self.head
+        for i in range(index-1):
+            itr = itr.nxt
+
+        shiftNode = itr.nxt
+        node = Node(data, shiftNode)
+        itr.nxt = node
+
+        self.llist.insert(index, data)
+        self.length += 1
+
+        return self
+
+
+    def removeAT(self, index: int):
+        if index >= self.length:
+            raise IndexError('linked list index out of range')
+        
+        itr = self.head
+        for i in range(index-1):
+            itr = itr.nxt
+
+        data = itr.nxt.data
+        itr.nxt = itr.nxt.nxt
+        self.length -= 1
+
+        return data
+
+
+    def remove(self, data):
+        itr = self.head
+
+        while itr != None:
+            if itr.nxt == data:
+                itr.nxt = itr.nxt.nxt
+                self.length -= 1
+                self.llist.remove(data)
+                return data
+
+            itr = itr.nxt
+        
+        raise ValueError('Singly.remove(x): x not in list')
