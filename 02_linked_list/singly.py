@@ -92,6 +92,14 @@ class Singly:
     def __len__(self) -> int:
         return self.length
 
+
+    def __iter__(self):
+        itr = self.head
+
+        while itr:
+            yield itr
+            itr = itr.nxt
+
     
     def __eq__(self, o: object) -> bool:
         if self.llist == o.llist:
