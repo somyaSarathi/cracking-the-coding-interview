@@ -200,6 +200,7 @@ class Singly:
             self.tail = self.head
             self.length += 1
             self.llist.append(value)
+            return
 
         node = Node(value, self.head)
         self.head = node
