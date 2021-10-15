@@ -13,7 +13,10 @@ class Node:
 
 
     def __eq__(self, o: object) -> bool:
-        if self.data == o or self.data == o.data:
+        if self.data == o:
+            return True
+
+        if type(o) == type(self) and self.data == o.data:
             return True
 
         return False
