@@ -219,8 +219,11 @@ class Singly:
         if value == None or index == None:
             raise TypeError('expected a none None object')
 
-        if index >= self.length:
+        if index > self.length:
             raise IndexError('linked list index out of range')
+
+        if index == self.length:
+            self.push(value)
         
         itr = self.head
         for i in range(index-1):
