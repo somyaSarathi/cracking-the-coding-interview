@@ -13,7 +13,7 @@ class Node:
 
 
     def __eq__(self, o: object) -> bool:
-        if self.data == o:
+        if self.data == o or self.data == o.data:
             return True
 
         return False
@@ -219,8 +219,11 @@ class Singly:
         if value == None or index == None:
             raise TypeError('expected a none None object')
 
-        if index >= self.length:
+        if index > self.length:
             raise IndexError('linked list index out of range')
+
+        if index == self.length:
+            self.push(value)
         
         itr = self.head
         for i in range(index-1):
