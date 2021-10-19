@@ -67,10 +67,12 @@ class binarySearchTree:
 
     def append(self, arg):
         """
-        inserts node to the tree.
+            inserts node to the tree.
         """
         if self.root is None:
             self.root = Node(arg)
+            self.nodes += 1
+            return
 
         itr = self.root
 
@@ -78,6 +80,7 @@ class binarySearchTree:
             if itr > arg:
                 if itr.left is None:
                     itr.left = Node(arg, itr)
+                    self.nodes += 1
                     return
 
                 itr = itr.left
@@ -88,14 +91,15 @@ class binarySearchTree:
             else:
                 if itr.right is None:
                     itr.right = Node(arg, itr)
+                    self.nodes += 1
                     return
 
                 itr = itr.right
 
 
-    def isNode(self, key):
+    def isNode(self, key) -> bool:
         """
-        returns true if node exists
+            returns true if node exists
         """
         itr = self.root
 
@@ -109,4 +113,4 @@ class binarySearchTree:
             else:
                 itr = itr.right
 
-        raise False
+        return False
