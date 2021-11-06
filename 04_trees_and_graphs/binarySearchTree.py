@@ -11,18 +11,22 @@ class Node:
 
 
     def __str__(self) -> str:
+        """returs str(self)"""
         return str(self.data)
 
 
     def __repr__(self) -> str:
+        """returs repr(self)"""
         return f"'{self.__str__()}'"
 
 
     def __del__(self) -> None:
+        """deletes the nodes"""
         return
 
 
     def __eq__(self, o: object) -> bool:
+        """returns Self == value"""
         if type(self) is type(o):
             return (self.data == o.data)
 
@@ -30,6 +34,7 @@ class Node:
 
 
     def __gt__(self, o: object) -> bool:
+        """returns Self > value"""
         if type(self) is type(o):
             return (self.data > o.data)
 
@@ -37,6 +42,7 @@ class Node:
 
 
     def __lt__(self, o: object) -> bool:
+        """returns Self < value"""
         if type(self) is type(o):
             return (self.data < o.data)
 
@@ -44,6 +50,7 @@ class Node:
 
 
     def __ge__(self, o: object) -> bool:
+        """returns Self >= value"""
         if type(self) is type(o):
             return (self.data >= o.data)
 
@@ -51,6 +58,7 @@ class Node:
 
 
     def __le__(self, o: object) -> bool:
+        """returns Self <= value"""
         if type(self) is type(o):
             return (self.data <= o.data)
 
@@ -73,10 +81,82 @@ class Node:
         return self
 
 
+    def __sub__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data - o.data)
+
+        return (self.data - o)
+
+
+    def __isub__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data -= o.data
+            return self
+
+        self.data -= o
+        return self
+
+
+    def __mul__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data * o.data)
+
+        return (self.data * o)
+
+
+    def __imul__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data *= o.data
+            return self
+
+        self.data *= o
+        return self
+
+
+    def __truediv__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data / o.data)
+
+        return (self.data / o)
+
+
+    def __itruediv__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data /= o.data
+            return self
+
+        self.data /= o
+        return self
+
+
+    def __floordiv__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data // o.data)
+
+        return (self.data // o)
+
+
+    def __ifloordiv__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data //= o.data
+            return self
+
+        self.data //= o
+        return self
+
+
 class binarySearchTree:
-    def __init__(self) -> None:
+    def __init__(self, *args) -> None:
+        """
+            initializes the tree
+        """
         self.root = None
         self.nodes: int = 0
+
+        if args:
+            for arg in args:
+                self.append(arg)
+        
         return
 
 
@@ -129,3 +209,63 @@ class binarySearchTree:
                 itr = itr.right
 
         return False
+
+
+    def displayInOrder(self, node=None) -> None:
+        """
+            displays the tree in order
+        """
+        if node is None:
+            node = self.root
+
+        if node.left:
+            self.displayInOrder(node.left)
+
+        print(node.data, end=' ')
+
+        if node.right:
+            self.displayInOrder(node.right)
+
+        else:
+            print('')
+
+        return
+
+
+    def displayPreOrder(self, node=None) -> None:
+        """
+            displays the tree in pre order
+        """
+        if node is None:
+            node = self.root
+
+        print(node.data, end=' ')
+
+        if node.left:
+            self.displayPreOrder(node.left)
+
+        if node.right:
+            self.displayPreOrder(node.right)
+
+        else:
+            print('')
+
+        return
+
+
+    def displayPostOrder(self, node=None) -> None:
+        """
+            displays the tree in post order
+        """
+        if node is None:
+            node = self.root
+
+        if node.left:
+            self.displayPostOrder(node.left)
+
+        if node.right:
+            self.displayPostOrder(node.right)
+
+        print(node.data, end=' ')
+
+        return
