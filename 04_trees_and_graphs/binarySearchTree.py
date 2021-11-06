@@ -57,6 +57,21 @@ class Node:
         return (self.data <= o)
 
 
+    def __add__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data + o.data)
+
+        return (self.data + o)
+
+
+    def __iadd__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data += o.data
+            return self
+
+        self.data += o
+        return self
+
 
 class binarySearchTree:
     def __init__(self) -> None:
