@@ -9,7 +9,12 @@ class Node:
         self.right = None
         return
 
+    def __del__(self) -> None:
+        """deletes the nodes"""
+        return
 
+
+    # string methods
     def __str__(self) -> str:
         """returs str(self)"""
         return str(self.data)
@@ -20,11 +25,7 @@ class Node:
         return f"'{self.__str__()}'"
 
 
-    def __del__(self) -> None:
-        """deletes the nodes"""
-        return
-
-
+    # conditions
     def __eq__(self, o: object) -> bool:
         """returns Self == value"""
         if type(self) is type(o):
@@ -65,6 +66,7 @@ class Node:
         return (self.data <= o)
 
 
+    # arithmetic operation
     def __add__(self, o: object) -> object:
         if type(self) is type(o):
             return (self.data + o.data)
@@ -145,10 +147,73 @@ class Node:
         return self
 
 
+    # contional operators
+    def __bool__(self) -> bool:
+        return bool(self.data)
+
+
+    # bitwise operators
+    def __and__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data and o.data)
+
+        return (self.data and o)
+
+
+    def __or__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data or o.data)
+
+        return (self.data or o)
+
+
+    def __xor__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data ^ o.data)
+
+        return (self.data ^ o)
+
+
+    def __invert__(self) -> object:
+        return ~self.data
+
+
+    def __lshift__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data << o.data)
+
+        return (self.data << o)
+
+
+    def __ilshift__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data <<= o.data
+            return self
+
+        self.data <<= o
+        return self
+
+
+    def __rshift__(self, o: object) -> object:
+        if type(self) is type(o):
+            return (self.data >> o.data)
+
+        return (self.data >> o)
+
+
+    def __irshift__(self, o: object) -> object:
+        if type(self) is type(o):
+            self.data >>= o.data
+            return self
+
+        self.data >>= o
+        return self
+
+
 class binarySearchTree:
     def __init__(self, *args) -> None:
         """
-            initializes the tree
+            initializes the tree.
         """
         self.root = None
         self.nodes: int = 0
@@ -172,6 +237,9 @@ class binarySearchTree:
         itr = self.root
 
         while itr:
+            if itr == arg:
+                return
+
             if itr > arg:
                 if itr.left is None:
                     itr.left = Node(arg, itr)
@@ -179,9 +247,6 @@ class binarySearchTree:
                     return
 
                 itr = itr.left
-
-            elif itr == arg:
-                return
 
             else:
                 if itr.right is None:
@@ -194,7 +259,7 @@ class binarySearchTree:
 
     def isNode(self, key) -> bool:
         """
-            returns true if node exists
+            returns true if node exists.
         """
         itr = self.root
 
@@ -213,7 +278,7 @@ class binarySearchTree:
 
     def displayInOrder(self, node=None) -> None:
         """
-            displays the tree in order
+            displays the tree in order.
         """
         if node is None:
             node = self.root
@@ -226,15 +291,12 @@ class binarySearchTree:
         if node.right:
             self.displayInOrder(node.right)
 
-        else:
-            print('')
-
         return
 
 
     def displayPreOrder(self, node=None) -> None:
         """
-            displays the tree in pre order
+            displays the tree in pre order.
         """
         if node is None:
             node = self.root
@@ -247,15 +309,12 @@ class binarySearchTree:
         if node.right:
             self.displayPreOrder(node.right)
 
-        else:
-            print('')
-
         return
 
 
     def displayPostOrder(self, node=None) -> None:
         """
-            displays the tree in post order
+            displays the tree in post order.
         """
         if node is None:
             node = self.root
@@ -269,3 +328,76 @@ class binarySearchTree:
         print(node.data, end=' ')
 
         return
+
+
+    def remove(self, key, root=None) -> None:
+        '''
+            removes node from the tree.
+        '''
+        if not root:
+            root = self.root
+
+        while root:
+            if root == key:
+                # leaf node
+                if (not root.left) and (not root.right):
+                    if root.parent.left == root:
+                        root.parent.left = None
+                    else:
+                        root.parent.right = None
+                    del root
+                    return
+
+                # one child
+                if not root.left:
+                    if root.parent.left == root:
+                        root.parent.left = root.right
+                    else:
+                        root.parent.right = root.right
+                    del root
+                    return
+
+                if not root.right:
+                    if root.parent.left == root:
+                        root.parent.left = root.left
+                    else:
+                        root.parent.right = root.left
+                    del root
+                    return
+
+                # two childs
+                self.root = self.min(root.right)
+                self.remove(root.data, root.right)
+
+            if root > key:
+                root = root.left
+            else:
+                root = root.right
+
+        return
+
+    
+    def min(self, root=None):
+        '''
+            returns the smallest value in the tree.
+        '''
+        if not root:
+            root = self.root
+
+        while root.left:
+            root = root.left
+
+        return root.data
+
+
+    def max(self, root=None):
+        '''
+            returns the largest value in the tree.
+        '''
+        if not root:
+            root = self.root
+        
+        while root.right:
+            root = root.right
+
+        return root
