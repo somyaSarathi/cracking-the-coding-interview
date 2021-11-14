@@ -281,6 +281,9 @@ class binarySearchTree:
             displays the tree in order.
         """
         if node is None:
+            if self.root is None:
+                return
+                
             node = self.root
 
         if node.left:
@@ -299,6 +302,9 @@ class binarySearchTree:
             displays the tree in pre order.
         """
         if node is None:
+            if self.root is None:
+                return
+                
             node = self.root
 
         print(node.data, end=' ')
@@ -317,6 +323,9 @@ class binarySearchTree:
             displays the tree in post order.
         """
         if node is None:
+            if self.root is None:
+                return
+
             node = self.root
 
         if node.left:
@@ -332,7 +341,7 @@ class binarySearchTree:
 
     def remove(self, key, root=None) -> None:
         '''
-            removes node from the tree.
+            removes the node from the tree.
         '''
         if not root:
             root = self.root
@@ -341,27 +350,45 @@ class binarySearchTree:
             if root == key:
                 # leaf node
                 if (not root.left) and (not root.right):
+                    if not root.parent:
+                        self.root = None
+                        self.nodes = 0
+                        return
+
                     if root.parent.left == root:
                         root.parent.left = None
                     else:
                         root.parent.right = None
+                    self.node -= 1
                     del root
                     return
 
                 # one child
                 if not root.left:
+                    if not root.parent:
+                        self.root = root.right
+                        self.nodes -= 1
+                        return
+
                     if root.parent.left == root:
                         root.parent.left = root.right
                     else:
                         root.parent.right = root.right
+                    self.nodes -= 1
                     del root
                     return
 
                 if not root.right:
+                    if not root.parent:
+                        self.root = root.left
+                        self.nodes -= 1
+                        return
+
                     if root.parent.left == root:
                         root.parent.left = root.left
                     else:
                         root.parent.right = root.left
+                    self.nodes -= 1
                     del root
                     return
 
