@@ -24,6 +24,7 @@ class graph:
                     self.addVertex(edges[i])
                 except IndexError:
                     self.weights[(vertex, edges[i])] = 1
+                    self.addVertex(edges[i])
 
         except KeyError:
             self.vertices[vertex] = set()
@@ -34,6 +35,7 @@ class graph:
                     self.addVertex(edges[i])
                 except IndexError:
                     self.weights[(vertex, edges[i])] = 1
+                    self.addVertex(edges[i])
         
         return
 
