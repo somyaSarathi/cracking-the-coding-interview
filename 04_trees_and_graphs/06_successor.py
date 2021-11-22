@@ -1,21 +1,47 @@
 from binarySearchTree import Node, binarySearchTree as bst
 
-def inOrder(root: Node, key: int, stack=[]) -> int:
+
+def successor(root: Node, key: int, stack: list = []):
     if root.left:
-        stack = inOrder(root.left, key, stack)
+        stack = successor(root.left, key, stack)
 
-    if root == key:
-        print(stack.pop())
-        exit(0)
+    if stack:
+        if stack[len(stack)-1] == key:
+            print(root)
+            exit(0)
 
-    stack.append(root)
+        if root.data > key:
+        	exit(0)
+
+    stack.append(root.data)
 
     if root.right:
-        stack = inOrder(root.right, key, stack)
+        stack = successor(root.right, key, stack)
 
     return stack
 
 
+'''
+    1 2 3 4 5 7 13 19 21 23 45 62
+
+               (3)
+               ↙ ↘
+             (2) (4)
+             ↙     ↘
+           (1)     (5)
+                     ↘
+                     (7)
+                       ↘
+                      (19)
+                      ↙  ↘
+                   (13)  (45)
+                         ↙  ↘
+                      (21)  (62)
+                         ↘
+                        (23)
+'''
+
+
 if __name__ == '__main__':
-    tree = bst(3, 4, 5, 2, 1, 7, 19, 23, 45, 21, 62, 23, 13)
-    inOrder(tree.root, 23)
+    tree: bst = bst(3, 4, 5, 2, 1, 7, 19, 45, 21, 62, 23, 13)
+    successor(tree.root, 23)  # 45
