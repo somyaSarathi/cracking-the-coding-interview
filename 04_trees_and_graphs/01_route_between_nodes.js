@@ -6,14 +6,14 @@ const dfs = (graph, start, end, visited=new Set()) => {
     if(visited.has(start)) return false;
 
     visited.add(start)
-    let hasPath = false
 
     for(let conn of graph[start]) {
-        hasPath ||= dfs(graph, conn, end, visited);
+        if (dfs(graph, conn, end, visited)) return true;
     }
 
-    return hasPath
+    return false;
 }
+
 
 function bfs(graph, start, end) {
     if(start === end) return true;
