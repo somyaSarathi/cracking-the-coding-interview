@@ -28,7 +28,6 @@ function bfs(graph, start, end) {
         for(let conn of graph[curr]) {
             if(conn === end) return true;
             if(!visited.has(conn)) queue.push(conn);
-            queue.push(conn)
         }
     }
 
