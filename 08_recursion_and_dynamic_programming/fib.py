@@ -18,7 +18,7 @@ def fib_bottom_up(n: int) -> int:
 
 
 # top-down
-def fib_top_down(n: int, memo: list[int]=None):
+def fib_top_down(n: int, memo: list[int]=None) -> int:
     if n == 0: return 0
     elif n <= 2: return 1
 
