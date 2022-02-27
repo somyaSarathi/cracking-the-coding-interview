@@ -18,10 +18,13 @@ def gridTraveler_matrix(m: int, n: int, memo: list[int]=None) -> int:
 
 
 # dict is more memory efficient
-def gridTraveler_dict(m: int, n: int, memo={}) -> int:
+def gridTraveler_dict(m: int, n: int, memo=None) -> int:
     # base case
     if n == 1 or m == 1: return 1
     if n == 0 or m == 0: return 0
+
+    if memo is None:
+        memo = {}
 
     try:
         return memo[m, n]
