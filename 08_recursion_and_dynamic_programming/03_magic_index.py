@@ -1,8 +1,9 @@
 import math
 import time
+from typing import Literal
 
 
-def magicalIndex(n: int, arr: list[int]):
+def magicalIndex(n: int, arr: list[int]) -> (int | Literal[-1]):
     count = 0
     for i in range(n):
         if i == arr[i]: count += 1
