@@ -11,21 +11,16 @@ import time
 
 
 class Solution:
-    def __init__(self, n: int, arr: list[int]) -> None:
-        self.arr = arr
-        self.n = n
+    def subsets(self, nums: list[int]) -> list[list[int]]:
         self.allSubset = []
-
-    
-    def __str__(self) -> str:
-        self.subset()
-        return self.allSubset.__str__()
-
-
-    def subset(self, sub: list[int]=[], counter: int=0) -> None:
-        if counter < self.n:
-            self.subset(sub+[arr[counter]], counter+1)
-            self.subset(sub, counter+1)
+        self.arr = nums
+        self.helper([])
+        return self.allSubset
+        
+    def helper(self, sub: list[int], counter: int=0) -> None:
+        if counter < len(self.arr):
+            self.helper(sub, counter+1)
+            self.helper(sub+[self.arr[counter]], counter+1)
             return None
         else:
             self.allSubset.append(sub)
@@ -39,8 +34,8 @@ if __name__ == '__main__':
     n = int(input().strip())
     arr = [ int(x) for x in input().strip().split() ]
 
-    result = Solution(n, arr)
-    print(result)
+    result = Solution()
+    print(result.subsets(arr))
 
     print(f'program executed in {time.time() - START_TIME} second(s)')
     exit(0)
